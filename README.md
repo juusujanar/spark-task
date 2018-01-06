@@ -5,3 +5,5 @@ Tegin antud aine raames kaks rakendust Scalas, mõlemad kasutavad Apache Spark m
 1. TwitterPopularHashtags (spark-streaming) - striimib sisse Twitteris uusi tweete/sõnumeid, otsib üles need, milles on ette antud märksõnad ja teeb nimekirja kõige rohkem kasutatavatest hashtagidest.
 
 2. CreditCards (spark-machine-learning) - loeb excelist sisse andmed ning treenib masinõppe mudeli, seejärel teeb ennustusi.
+
+Litsenseeritud GNU General Public License v3.0 alusel. / Licensed under GNU General Public License v3.0.
