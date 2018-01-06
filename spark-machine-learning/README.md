@@ -2,6 +2,8 @@
 
 Will add text.
 
+Kasutatud Apache Spark 2.2.1, Scala 2.11.12, sbt 1.1.0, Java 1.8.0_152.
+
 ### Andmete struktuur:
 
 X1: Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit. 
@@ -21,3 +23,6 @@ X12-X17: Amount of bill statement (NT dollar). X12 = amount of bill statement in
 X18-X23: Amount of previous payment (NT dollar). X18 = amount paid in September, 2005; X19 = amount paid in August, 2005; . . .;X23 = amount paid in April, 2005.
 
 Y: Default payment (Yes = 1, No = 0)
+
+### Kasutatud allikad:
+* https://spark.apache.org/docs/2.2.0/ml-classification-regression.html#random-forest-classifier
