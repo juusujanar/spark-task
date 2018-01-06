@@ -11,8 +11,11 @@ Kasutatud Apache Spark 2.2.1, Scala 2.11.12, sbt 1.1.0, Java 1.8.0_152.
 Test Error = 0.17990601924367866
 ```
 
-### Andmete struktuur:
+### Andmekogumik:
 
+**Allikas:** https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients
+
+**Ülesehitus:**
 X1: Amount of the given credit (NT dollar): it includes both the individual consumer credit and his/her family (supplementary) credit. 
 
 X2: Gender (1 = male; 2 = female). 

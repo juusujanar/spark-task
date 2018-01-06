@@ -13,6 +13,10 @@ Filtrid võivad olla lihtsalt sõned, mida otsida sõnumite sisust.
 
 API ühendusvõtmed saab, kui luua enda Twitteri konto alt uus applikatsioon - https://apps.twitter.com/
 
+### Kasutatud allikad
+* https://github.com/apache/bahir/blob/master/streaming-twitter/examples/src/main/scala/org/apache/spark/examples/streaming/twitter/TwitterPopularTags.scala
+* https://mapr.com/blog/spark-streaming-and-twitter-sentiment-analysis/
+
 ### Näide
 ##### Sisend
 ```
