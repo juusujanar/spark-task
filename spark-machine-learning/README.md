@@ -1,8 +1,15 @@
 # Spark Machine Learning
 
-Will add text.
+Kuna mul on suur huvi masinõppe ning tehisnärvivõrkude vastu, siis proovisin ka masinõppe mudelit ehitada Sparkis.
+Leidsin internetis andmeteks ühe Taiwani panga andmed, kus on krediitkaardi kasutuse andmed ning kas need suletakse või ei.
+Kasutasin RandomForestClassifier'i mudeli treenimiseks. Enamus aega kulus siiski algandmete kohendamiseks sobivale kujule.
 
 Kasutatud Apache Spark 2.2.1, Scala 2.11.12, sbt 1.1.0, Java 1.8.0_152.
+
+### Saadud tulemus:
+```
+Test Error = 0.17990601924367866
+```
 
 ### Andmete struktuur:
 
@@ -26,3 +33,4 @@ Y: Default payment (Yes = 1, No = 0)
 
 ### Kasutatud allikad:
 * https://spark.apache.org/docs/2.2.0/ml-classification-regression.html#random-forest-classifier
+* https://spark.apache.org/docs/2.1.0/ml-features.html#vectorassembler

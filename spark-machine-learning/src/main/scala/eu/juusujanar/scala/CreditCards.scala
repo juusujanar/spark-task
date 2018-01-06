@@ -2,7 +2,7 @@ package eu.juusujanar.scala
 
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.ml.classification.{RandomForestClassificationModel, RandomForestClassifier}
+import org.apache.spark.ml.classification.{RandomForestClassifier}
 import org.apache.spark.ml.evaluation.MulticlassClassificationEvaluator
 import org.apache.spark.ml.feature.{IndexToString, StringIndexer, VectorAssembler, VectorIndexer}
 
@@ -11,6 +11,8 @@ object CreditCards {
   def main(args: Array[String]): Unit = {
 
     val sqlContext = SparkSession.builder().appName("Credit Cards").master("local").getOrCreate()
+    val sc = sqlContext.sparkContext
+    sc.setLogLevel("WARN")
 
     val data = sqlContext.read
       .format("com.crealytics.spark.excel")
@@ -19,8 +21,6 @@ object CreditCards {
       .option("inferSchema", "true")
       .option("addColorColumns", "False")
       .load("src/main/resources/CreditCardDetails.xls")
-
-    data.printSchema()
 
     // Prep features aka all X1-X23
     val featureAssembler = new VectorAssembler()
@@ -39,10 +39,10 @@ object CreditCards {
     val labelIndexer = new StringIndexer()
       .setInputCol("Y")
       .setOutputCol("indexedLabel")
-      .fit(data)
+      .fit(featuresData)
 
     // Split into test and training
-    val Array(training, test) = data.randomSplit(Array(0.7, 0.3))
+    val Array(training, test) = featuresData.randomSplit(Array(0.7, 0.3))
 
     val rf = new RandomForestClassifier()
       .setLabelCol("indexedLabel")
@@ -66,7 +66,7 @@ object CreditCards {
     val predictions = model.transform(test)
 
     // Select example rows to display.
-    predictions.select("predictedLabel", "label", "features").show(5)
+    predictions.select("predictedLabel", "Y", "features").show(50)
 
     // Select (prediction, true label) and compute test error.
     val evaluator = new MulticlassClassificationEvaluator()
@@ -75,9 +75,6 @@ object CreditCards {
       .setMetricName("accuracy")
     val accuracy = evaluator.evaluate(predictions)
     println("Test Error = " + (1.0 - accuracy))
-
-    val rfModel = model.stages(2).asInstanceOf[RandomForestClassificationModel]
-    println("Learned classification forest model:\n" + rfModel.toDebugString)
 
   }
 
