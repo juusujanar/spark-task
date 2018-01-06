@@ -4,13 +4,13 @@ import org.apache.spark.streaming.{ Seconds, StreamingContext }
 import org.apache.spark.streaming.twitter._
 import org.apache.spark.{ SparkContext, SparkConf }
 
-// For guidance:
-
 object TwitterPopularHashTags {
-  val conf = new SparkConf().setMaster("local[4]").setAppName("TwitterPopularHashtags")
-  val sc = new SparkContext(conf)
 
   def main(args: Array[String]) {
+
+    val conf = new SparkConf().setMaster("local[4]").setAppName("TwitterPopularHashtags")
+    val sc = new SparkContext(conf)
+    sc.setLogLevel("WARN")
 
     val Array(consumerKey, consumerSecret, accessToken, accessTokenSecret) = args.take(4)
     val filters = args.takeRight(args.length - 4)
